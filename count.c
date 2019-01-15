@@ -5,9 +5,9 @@
 int BUFFER_SIZE = 20;
 
 char buffer[20];
-int  filePtr = 0;
-int  fileSize = 0;
-int  numMatch = 0;
+long  filePtr = 0;
+long  fileSize = 0;
+long  numMatch = 0;
 
 // open the input file to be read
 FILE* readFile(char* fileName) {
@@ -16,13 +16,13 @@ FILE* readFile(char* fileName) {
 }
 
 // write the final output to both the terminal and the specified output file
-int writeFile(char* fileName, long fileSize, int numMatches) {
+int writeFile(char* fileName, long fileSize, long numMatches) {
     FILE* file = fopen(fileName, "wb");
     // arbitrary sizes for the output strings, if the size of the input file and/or number of matches takes more than 100 bytes worth of string to print then you've got bigger problems
     char sizeStr[100];
     char numMatchStr[100];
     sprintf(sizeStr, "Size of file is %lu\n", fileSize);
-    sprintf(numMatchStr, "Number of matches = %i\n", numMatches);
+    sprintf(numMatchStr, "Number of matches = %lu\n", numMatches);
 
     // print to terminal
     printf("%s", sizeStr);
@@ -38,7 +38,7 @@ int writeFile(char* fileName, long fileSize, int numMatches) {
 }
 
 // increments the running count of matches that have been found so far
-int incCount(char* input, char* match) {
+long incCount(char* input, char* match) {
     // match the first |match| characters of input with match, if same then increment match count
     if (strncmp(match, input, strlen(match)) == 0) {
         numMatch++;
@@ -88,7 +88,8 @@ int main(int argc, char **argv) {
     // get the file size
     long fileSize = getFileSize(file);
     // shift along the file, counting the number of times we get a match
-    for (int i = 0; i < fileSize; i++) {
+    long i;
+    for (i = 0; i < fileSize; i++) {
         incCount(buffer, argv[2]);
         shiftBuffer(file);
     }
