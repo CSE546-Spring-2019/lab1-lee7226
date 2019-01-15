@@ -89,8 +89,8 @@ int main(int argc, char **argv) {
     long fileSize = getFileSize(file);
     // shift along the file, counting the number of times we get a match
     for (int i = 0; i < fileSize; i++) {
-        shiftBuffer(file);
         incCount(buffer, argv[2]);
+        shiftBuffer(file);
     }
     // write the output
     writeFile(argv[3], fileSize, numMatch);
