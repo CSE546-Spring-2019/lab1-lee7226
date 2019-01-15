@@ -1,0 +1,9 @@
+Author: Ben Lee
+Lab: 1
+Date: 1/14/19
+
+run by first using "make" to make the executable
+
+then run by using the command "./count <input-filename> <search-string> <output-filename>"
+
+this will print out the number of matches <search-string> has in <input-filename> as well as writing those results to <output-filename>
